@@ -1,0 +1,18 @@
+<h1> New Article </h1>
+
+
+<%= form_with scope: :article, url: '/articles', local: true do |form| %>
+  <p>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </p>
+
+  <p>
+    <%= form.submit "Save Article" %>
+  </p>
+<% end %>
