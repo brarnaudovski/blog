@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('turbolinks:load', () => {
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -21,5 +20,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
 });
