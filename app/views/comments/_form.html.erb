@@ -1,0 +1,27 @@
+<div class="column is-5 is-offset-4">
+  <article class="media">
+    <div class="media-content">
+      <%= form_with model: [article, comment], local: true do |form| %>
+        <div class="field">
+          <p class="control">
+            <%= form.text_field :commenter, class: "input", placeholder: 'Commenter' %>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+              <%= form.text_area :body, class: "textarea", placeholder: "Add a comment..." %>
+          </p>
+        </div>
+        <nav class="level">
+          <div class="level-left">
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <%= form.submit "Comment", class: 'button is-info' %>
+            </div>
+          </div>
+        </nav>
+      <% end %>
+    </div>
+  </article>
+</div>
