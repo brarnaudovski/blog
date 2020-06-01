@@ -13,9 +13,9 @@
           <a class="level-item">
             <span class="icon is-small"><i class="fas fa-edit"></i></span>
           </a>
-          <a class="level-item">
+          <%= link_to article_comment_path(comment.article, comment), method: :delete , class: "level-item", data: { confirm: "Are you sure you want to delete this comment?" } do %>
             <span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
-          </a>
+          <% end %>
         </div>
       </nav>
     </div>
