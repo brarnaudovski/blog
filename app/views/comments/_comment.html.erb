@@ -1,18 +1,18 @@
-<div class="column is-5 is-offset-4">
+<div class="column is-6 is-offset-3 comment">
   <article class="media">
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= comment.commenter %></strong> <small><%= time_ago_in_words(comment.created_at) %></small>
+          <strong><%= comment.commenter %></strong> <small><%= time_ago_in_words(comment.created_at) %> ago </small>
           <br>
           <%= comment.body %>
         </p>
       </div>
       <nav class="level is-mobile">
         <div class="level-left">
-          <a class="level-item">
+          <%= link_to edit_article_comment_path(comment.article, comment), class: "level-item" do %>
             <span class="icon is-small"><i class="fas fa-edit"></i></span>
-          </a>
+          <% end %>
           <%= link_to article_comment_path(comment.article, comment), method: :delete , class: "level-item", data: { confirm: "Are you sure you want to delete this comment?" } do %>
             <span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
           <% end %>
