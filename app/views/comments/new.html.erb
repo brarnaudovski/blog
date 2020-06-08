@@ -6,6 +6,22 @@
       </div>
     </div>
 
+    <% if @comment.errors.any? %>
+      <div class="column is-6 is-offset-3">
+        <article class="message is-danger">
+          <div class="message-body">
+            <p><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</p>
+            <br>
+            <p>
+            <% @comment.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </p>
+          </div>
+        </article>
+      </div>
+    <% end %>
+
     <div class="column is-6 is-offset-3">
       <article class="media">
         <div class="media-content">
