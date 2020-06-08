@@ -21,9 +21,9 @@
             </div>
             <nav class="level is-mobile">
               <div class="level-left">
-                <a class="level-item">
+                <%= link_to edit_article_comment_path(comment.article, comment), class: "level-item" do %>
                   <span class="icon is-small"><i class="fas fa-edit"></i></span>
-                </a>
+                <% end %>
                 <a class="level-item">
                   <span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
                 </a>
