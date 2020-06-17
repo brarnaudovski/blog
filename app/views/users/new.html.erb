@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-6 is-offset-3">
+      <div class="content is-size-3">
+        <h1>New User</h1>
+      </div>
+    </div>
+
+    <% if @user.errors.any? %>
+      <div class="column is-6 is-offset-3">
+        <article class="message is-danger">
+          <div class="message-body">
+            <p><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</p>
+            <br>
+            <p>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </p>
+          </div>
+        </article>
+      </div>
+    <% end %>
+
+    <div class="column is-6 is-offset-3">
+      <%= form_with model: @user, local: true do |form| %>
+        <div class="field">
+          <%= form.label :name, class: "label" %>
+          <div class="control">
+            <%= form.text_field :name, class: "input", placeholder: "Your name"%>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :email, class: "label" %>
+
+          <div class="control">
+            <%= form.email_field :email, class: "input", placeholder: 'Your email' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :password, class: "label" %>
+
+          <div class="control">
+            <%= form.password_field :password, class: "input", placeholder: 'Your password' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :password_confirmation, class: "label" %>
+
+          <div class="control">
+            <%= form.password_field :password_confirmation, class: "input", placeholder: 'Confirm password' %>
+          </div>
+        </div>
+
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Submit", class: "button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to "Cancel", articles_path, class: 'button is-link is-light' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
