@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-6 is-offset-3">
+      <div class="content is-size-3">
+        <h1>Sign in</h1>
+      </div>
+    </div>
+
+
+    <div class="column is-6 is-offset-3">
+      <%= form_with url: login_path, scope: :session, local: true do |form| %>
+        <div class="field">
+          <%= form.label :email, class: "label" %>
+
+          <div class="control">
+            <%= form.email_field :email, class: "input", placeholder: 'Your email' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :password, class: "label" %>
+
+          <div class="control">
+            <%= form.password_field :password, class: "input", placeholder: 'Your password' %>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Log In", class: "button is-link" %>
+          </div>
+          <div class="control">
+            <%= link_to "Cancel", articles_path, class: 'button is-link is-light' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
