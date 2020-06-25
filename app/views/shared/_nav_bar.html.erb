@@ -14,8 +14,8 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <%= link_to "New Article", new_article_path, class: "button is-primary has-text-weight-bold" %>
             <% if logged_in? %>
+              <%= link_to "New Article", new_article_path, class: "button is-primary has-text-weight-bold" %>
               <%= link_to "Log Out", logout_path, method: :delete, class: "button is-primary has-text-weight-bold" %>
             <% else %>
               <%= link_to "Log In", login_path, class: "button is-primary has-text-weight-bold" %>
