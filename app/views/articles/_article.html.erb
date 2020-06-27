@@ -22,7 +22,7 @@
         <%= link_to "Edit", edit_article_path(article), class: "card-footer-item" %>
       <% end %>
 
-      <% if local_assigns[:show] %>
+      <% if local_assigns[:show] && logged_in? %>
         <%= link_to "New Comment", new_article_comment_path(article), class: "card-footer-item" %>
       <% end %>
 

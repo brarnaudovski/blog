@@ -28,11 +28,6 @@
           <%= form_with model: [article, comment], local: true do |form| %>
             <div class="field">
               <p class="control">
-                <%= form.text_field :commenter, class: "input", placeholder: 'Commenter' %>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
                   <%= form.text_area :body, class: "textarea", placeholder: "Add a comment..." %>
               </p>
             </div>
