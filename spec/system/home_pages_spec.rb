@@ -8,17 +8,6 @@ RSpec.describe "HomePages" do
     visit root_path
   end
 
-  def log_in(user)
-    visit login_path
-
-    within('form') do
-      fill_in "Email", with: user.email
-      fill_in "Password", with: user.password
-
-      click_on 'Log In'
-    end
-  end
-
   it 'shows the home link' do
     expecting = page.has_link?('My Blog')
 
