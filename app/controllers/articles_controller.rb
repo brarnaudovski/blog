@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :require_login
+
   def index
     @articles = Article.all
   end
@@ -8,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    session_notice(:danger, 'You must be logged in!') unless logged_in?
+    # session_notice(:danger, 'You must be logged in!') unless logged_in?
 
     @article = Article.new
   end
@@ -25,12 +27,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    session_notice(:danger, 'You must be logged in!') unless logged_in?
-
     @article = Article.find(params[:id])
 
-    if logged_in?
-      session_notice(:danger, 'Wrong User') unless equal_with_current_user?(@article.user)
+    unless signed_in? && @article.user == current_user
+      flash[:danger] = 'Not allowed to edit this article'
+
+      redirect_to article_path(@article) and return
     end
   end
 
@@ -45,16 +47,16 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    session_notice(:danger, 'You must be logged in!') unless logged_in?
+    # session_notice(:danger, 'You must be logged in!') unless logged_in?
 
     article = Article.find(params[:id])
 
-    if equal_with_current_user?(article.user)
-      article.destroy
-      redirect_to articles_path
-    else
-      session_notice(:danger, 'Wrong User')
-    end
+    # if equal_with_current_user?(article.user)
+    article.destroy
+    redirect_to articles_path
+    # else
+    #   session_notice(:danger, 'Wrong User')
+    # end
   end
 
   private

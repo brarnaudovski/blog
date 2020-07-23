@@ -1,24 +1,11 @@
-class SessionsController < ApplicationController
-  def new
-    session_notice('warning', 'Already logged in!') if logged_in?
-  end
-
+class SessionsController < Clearance::SessionsController
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email])
 
-    if user&.authenticate(params[:session][:password])
-      log_in(user)
-      flash[:success] = "Welcome #{user.name} !"
-      redirect_to user
-    else
-      flash.now[:danger] = 'Email and password miss match'
-      render :new
+    if user && user.encrypted_password.blank?
+      redirect_to edit_user_password_path(user) and return
     end
 
-  end
-
-  def destroy
-    log_out
-    redirect_to root_path
+    super
   end
 end

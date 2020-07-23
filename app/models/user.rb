@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  include Clearance::User
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-  has_secure_password
+  # has_secure_password
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy

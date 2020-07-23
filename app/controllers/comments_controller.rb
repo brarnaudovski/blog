@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def new
-    session_notice(:danger, 'You must be logged in!', login_path) unless logged_in?
+    # session_notice(:danger, 'You must be logged in!', login_path) unless logged_in?
 
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build
@@ -19,15 +19,15 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    session_notice(:danger, 'You must be logged in!', login_path) unless logged_in?
-
     @comment = Comment.find(params[:id])
+    @article = @comment.article
 
-    if logged_in?
-      session_notice(:danger, 'Wrong User') unless equal_with_current_user?(@comment.user)
+    unless signed_in? && @comment.user == current_user
+      flash[:danger] = 'Not allowed to edit this comment'
+
+      redirect_to article_comment_path(@article, @comment) and return
     end
 
-    @article = @comment.article
   end
 
   def update
@@ -42,16 +42,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    session_notice(:danger, 'You must be logged in!', login_path) unless logged_in?
+    # session_notice(:danger, 'You must be logged in!', login_path) unless logged_in?
 
     comment = Comment.find(params[:id])
 
-    if equal_with_current_user?(comment.user)
-      comment.destroy
-      redirect_to comment.article
-    else
-      session_notice(:danger, 'Wrong User')
-    end
+    # if equal_with_current_user?(comment.user)
+    comment.destroy
+    redirect_to comment.article
+    # else
+    #   session_notice(:danger, 'Wrong User')
+    # end
   end
 
   private

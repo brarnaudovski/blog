@@ -14,12 +14,12 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <% if logged_in? %>
+            <% if signed_in? %>
               <%= link_to "New Article", new_article_path, class: "button is-primary has-text-weight-bold" %>
-              <%= link_to "Log Out", logout_path, method: :delete, class: "button is-primary has-text-weight-bold" %>
+              <%= link_to "Log Out", sign_out_path, method: :delete, class: "button is-primary has-text-weight-bold" %>
             <% else %>
-              <%= link_to "Log In", login_path, class: "button is-primary has-text-weight-bold" %>
-              <%= link_to "Sign Up", users_signup_path, class: "button is-primary has-text-weight-bold" %>
+              <%= link_to "Log In", sign_in_path, class: "button is-primary has-text-weight-bold" %>
+              <%= link_to "Sign Up", sign_up_path, class: "button is-primary has-text-weight-bold" %>
             <% end %>
           </div>
         </div>
