@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    unless logged_in?
+      session_notice(:danger, 'You must be logged in!', login_path) and return
+    end
+
     @article = Article.new(article_params)
     @article.user = current_user
 
@@ -35,12 +39,20 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    unless logged_in?
+      session_notice(:danger, 'You must be logged in!') and return
+    end
+
     @article = Article.find(params[:id])
 
-    if @article.update(article_params)
-      redirect_to @article
+    if equal_with_current_user?(@article.user)
+      if @article.update(article_params)
+        redirect_to @article
+      else
+        render :edit
+      end
     else
-      render :edit
+      session_notice(:danger, 'Wrong User') and return
     end
   end
 
