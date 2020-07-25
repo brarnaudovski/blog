@@ -8,7 +8,7 @@ RSpec.describe "ArticlesInteraction" do
     driven_by :selenium, using: :chrome
     # driven_by :rack_test
 
-    log_in(user)
+    system_log_in(user)
     # visit article_path(article)
   end
 

@@ -1,5 +1,5 @@
 module UserHelper
-  def log_in(user)
+  def system_log_in(user)
     visit login_path
 
     within('form') do
@@ -8,5 +8,18 @@ module UserHelper
 
       click_on 'Log In'
     end
+  end
+
+  def log_in(user)
+    post_params = {
+      params: {
+        session: {
+          email: user.email,
+          password: user.password
+        }
+      }
+    }
+
+    post login_path, post_params
   end
 end

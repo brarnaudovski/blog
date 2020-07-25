@@ -30,7 +30,7 @@ RSpec.describe "HomePages" do
 
   context 'when user is sign in into the app' do
     before do
-      log_in(create(:user))
+      system_log_in(create(:user))
       visit root_path
     end
 
