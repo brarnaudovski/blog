@@ -30,13 +30,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
+mk:
   articles:
-    header: 'Articles'
+    header: 'Статии'
   article:
-    new: 'New article'
-    submit: 'Save Article'
-  errors:
-    messages:
-      model_invalid: "Validation has failed: %{errors}"
-
+    new: 'Нова статија'
+    submit: 'Зачувај статија'
+  activerecord:
+    attributes:
+      article:
+        title: 'Наслов'
+        body: 'Содржина'
